@@ -82,3 +82,72 @@ class GreedyKnapsack {
 
 //yt link
 //https://youtu.be/oTTzNMHM05I?si=qxITyzjlX8XRYGvX
+
+// OR
+// without extra class
+// import java.util.*;
+
+// class GreedyKnapsack {
+
+//     public double greedy(int n, int[] profit, int[] weight, int M) {
+//         double[] ratio = new double[n];
+//         Integer[] index = new Integer[n];
+
+//         // Calculate ratio and initialize index
+//         for (int i = 0; i < n; i++) {
+//             ratio[i] = (double) profit[i] / weight[i];
+//             index[i] = i;
+//         }
+
+//         // Sort indices based on ratio in descending order
+//         Arrays.sort(index, (a, b) -> Double.compare(ratio[b], ratio[a]));
+
+//         double[] x = new double[n];
+//         int rc = M;
+//         double tp = 0.0;
+
+//         for (int i = 0; i < n; i++) {
+//             int idx = index[i];
+//             if (weight[idx] <= rc) {
+//                 x[idx] = 1.0;
+//                 tp += profit[idx];
+//                 rc -= weight[idx];
+//             } else {
+//                 x[idx] = (double) rc / weight[idx];
+//                 tp += profit[idx] * x[idx];
+//                 break;
+//             }
+//         }
+
+//         return tp;
+//     }
+
+//     public static void main(String[] args) {
+//         Scanner sc = new Scanner(System.in);
+//         System.out.println("Knapsack Using Greedy Approach");
+
+//         System.out.println("Enter number of items:");
+//         int n = sc.nextInt();
+
+//         int[] profit = new int[n];
+//         int[] weight = new int[n];
+
+//         System.out.println("Enter profits of items:");
+//         for (int i = 0; i < n; i++) {
+//             profit[i] = sc.nextInt();
+//         }
+
+//         System.out.println("Enter weights of items:");
+//         for (int i = 0; i < n; i++) {
+//             weight[i] = sc.nextInt();
+//         }
+
+//         System.out.println("Enter capacity of the Knapsack:");
+//         int M = sc.nextInt();
+
+//         GreedyKnapsack obj = new GreedyKnapsack();
+//         double max_profit = obj.greedy(n, profit, weight, M);
+
+//         System.out.println("Maximum Profit: " + max_profit);
+//     }
+// }
