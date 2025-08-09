@@ -83,8 +83,8 @@ class GreedyKnapsack {
 //yt link
 //https://youtu.be/oTTzNMHM05I?si=qxITyzjlX8XRYGvX
 
-// OR
-// without extra class
+//OR 
+//without Item class
 // import java.util.*;
 
 // class GreedyKnapsack {
@@ -151,3 +151,4 @@ class GreedyKnapsack {
 //         System.out.println("Maximum Profit: " + max_profit);
 //     }
 // }
+

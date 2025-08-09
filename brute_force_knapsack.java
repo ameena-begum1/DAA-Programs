@@ -1,9 +1,7 @@
-
 import java.util.*;
 
 class BruteForceKnapsack {
 
-    //brute force logic
     public void bruteforce(int wt[], int val[], int M, int n) {
 
         int[] A = new int[n + 1];
@@ -13,30 +11,30 @@ class BruteForceKnapsack {
 
         int totalSubsets = 1 << n;
 
-        for (int i = 0; i < totalSubsets; i++) { //all combinations
+        for (int i = 0; i < totalSubsets; i++) {
             int j = n;
             while (j > 0 && A[j] == 1) {
-                A[j] = 0; //flip the value
+                A[j] = 0;
                 j--;
             }
             if (j > 0) {
-                A[j] = 1; //flip the value
+                A[j] = 1;
             }
 
             int tempval = 0;
             int tempwt = 0;
 
-            for (int k = 1; k <= n; k++) { // if item is in current subset
+            for (int k = 1; k <= n; k++) {
                 if (A[k] == 1) {
                     tempval += val[k];
                     tempwt += wt[k];
                 }
             }
 
-            if (tempwt <= M && tempval > bestval) { 
+            if (tempwt <= M && tempval > bestval) {
                 bestval = tempval;
                 bestwt = tempwt;
-                B = A.clone(); // creating a copy of array A and storing it in array B
+                B = A.clone();
             }
 
         }
@@ -80,5 +78,3 @@ class BruteForceKnapsack {
 
 }
 
-// yt link
-// https://youtu.be/cecDyimvQdA?si=vQ-x4R647sxSH1FD (just for concept)
