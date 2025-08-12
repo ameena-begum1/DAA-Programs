@@ -1,56 +1,86 @@
-class MergeSort {
+import java.util.Scanner;
 
-static int[] a = {6,3,9,1,4,7};
-    public static void mergesort(int low,int high) {
-        if(low < high) {
-            int mid = (low + high)/2;
-            mergesort(low, mid);
-            mergesort(mid+1, high);
-            merge(low, mid, high);
-        }
-    }
+class Mergesort {
 
-    public static void merge(int low, int mid, int high) {
-        int[] b = new int[6];
+    public static void merge(int[] A, int low, int mid, int high) {
 
-        int i = low; 
-        int j = mid +1;
-        int x = low;
-        while ( i <= mid && j <= high) {
-            if(a[i] <= a[j]) {
-                b[x] = a[i];
-                x++;
+        int i = low;
+        int j = mid + 1;
+        int k = low;
+        int[] B = new int[high + 1];
+
+        while (i <= mid && j <= high) {
+            if (A[i] < A[j]) {
+                B[k] = A[i];
                 i++;
             } else {
-                b[x] = a[j];
-                x++;
+                B[k] = A[j];
                 j++;
-            }          
+            }
+            k++;
         }
-        while(i<=mid) {
-            b[x] = a[i];
+
+        while (i <= mid) {
+
+            B[k] = A[i];
             i++;
-            x++;
+            k++;
+
         }
-        while(j<=high) {
-            b[x] = a[j];
+
+        while (j <= high) {
+            B[k] = A[j];
             j++;
-            x++;
+            k++;
         }
-        for( int k = low ; k <= high; k++) {
-            a[k] = b[k];
+
+        for (int x = low; x <= high; x++) {
+            A[x] = B[x];
         }
+
     }
 
+    public void mergesort(int[] A, int low, int high) {
+
+        if (low < high) {
+
+            int mid = (low + high) / 2;
+            mergesort(A, low, mid);
+            mergesort(A, mid + 1, high);
+            merge(A, low, mid, high);
+        }
+
+    }
 
     public static void main(String[] args) {
-        mergesort(0, a.length - 1);
-        System.out.println("Sorted array:");
-        for (int num : a) {
-            System.out.print(num + " ");
+
+        Mergesort obj = new Mergesort();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter array size:");
+        int n = sc.nextInt();
+        int[] A = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            A[i] = sc.nextInt();
         }
+
+        System.out.println("Original array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(A[i] + " ");
+        }
+
+        System.out.println();
+        
+        obj.mergesort(A, 0, n - 1);
+
+        System.out.println("Sorted array");
+        for (int i = 0; i < n; i++) {
+            System.out.print(A[i] + " ");
+        }
+
     }
 }
 
 //yt link
 //https://youtu.be/unxAnJBy12Q?si=Ie0HQn4mFNuJTR7f
+

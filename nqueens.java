@@ -1,70 +1,62 @@
-/* N-Queen’s problem solution using Backtracking approach. */
+import java.util.Scanner;
 
-import java.util.*;
+class NQueens {
 
-class nqueens {
-
-    static int[] x = new int[100];
+    static int n;
+    static int[] x;
     static int count = 0;
 
-    //check for the cell is safe or not
-    public static boolean isSafe(int row, int col) {
-        for (int j = 1; j <= row - 1; j++) {
-            if ((x[j] == col) || (Math.abs(x[j] - col) == Math.abs(j - row))) {
+    public boolean Place(int k, int i) {
+        for (int j = 1; j <= k - 1; j++) {
+            if (x[j] == i || (Math.abs(x[j] - i) == Math.abs(j - k))) {
                 return false;
             }
         }
         return true;
     }
 
-    //function to print the output solution 
-    public static void printBoard(int n) {
-        count++;
-        System.out.println("\nSolution " + count + ":");
+    public void nQueens(int k, int n) {
 
-        System.out.print("   ");
-        for (int col = 1; col <= n; col++) {
-            System.out.print(col + " ");
-        }
-        System.out.println();
-        
-        
-        for (int row = 1; row <= n; row++) {
-            System.out.print(row + "  "); 
-            for (int col = 1; col <= n; col++) {
-                if (x[row] == col) {
-                    System.out.print("Q ");
+        for (int i = 1; i <= n; i++) {
+            if (Place(k, i)) {
+                x[k] = i;
+                if (k == n) {
+                    printBoard(n);
                 } else {
-                    System.out.print(". ");
+                    nQueens(k + 1, n);
+                }
+            }
+        }
+    }
+
+    public void printBoard(int n) {
+        count++;
+        System.out.println("Solution: " + count);
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (x[i] == j) {
+                    System.out.print(" Q" + i);
+                } else {
+                    System.out.print(" X ");
                 }
             }
             System.out.println();
         }
-    }
+        System.out.println();
 
-    // Recursive function to place queens row by row 
-    public static void NQueens(int row, int n) {
-        int col = 1;
-        for (col = 1; col <= n; col++) {
-            if (isSafe(row, col)) {
-                x[row] = col;
-                if (row == n)
-                printBoard(n);
-                 else {
-                    NQueens(row + 1, n);
-                }
-            }
-        }
     }
 
     public static void main(String[] args) {
-         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter number of queens (n): ");
-        int n = sc.nextInt();
+        NQueens obj = new NQueens();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no. of queens:");
+        n = sc.nextInt();
+        x = new int[n + 1];
+        obj.nQueens(1, n);
 
-        NQueens(1, n); 
+        System.out.println("Total no. of solutions for the " + n + " queens problem is: " + count);
 
-        System.out.println("\nTotal number of solutions for " + n + " queens: " + count);
     }
 }
 

@@ -1,0 +1,17 @@
+* 1. Quick sort
+* 2. Merge sort
+* 3. BFS
+* 4. DFS
+* 5. Greedy Knapsack 
+6. Kruskal's algorithm 
+7. Prism’s algorithm 
+* 8. Dijkstra's algorithm
+* 9. Floyd's algorithm
+* 10. Graph coloring
+* 11. NQueens 
+* 12. Hamiltonian Cycle
+* 13. Brute force Knapsack
+
+Total: 13
+DONE: 11
+TO DO: 2
