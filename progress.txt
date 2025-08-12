@@ -4,7 +4,7 @@
 * 4. DFS
 * 5. Greedy Knapsack 
 6. Kruskal's algorithm 
-7. Prism’s algorithm 
+* 7. Prism’s algorithm 
 * 8. Dijkstra's algorithm
 * 9. Floyd's algorithm
 * 10. Graph coloring
@@ -13,5 +13,5 @@
 * 13. Brute force Knapsack
 
 Total: 13
-DONE: 11
-TO DO: 2
+DONE: 12
+TO DO: 1
