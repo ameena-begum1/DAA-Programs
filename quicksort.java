@@ -1,50 +1,78 @@
-class QuickSort {
-     static int[] arr = {1,8,2,6,4,6};
+import java.util.Scanner;
 
-    public static void quicksort(int[] arr, int low, int high) {
-        if(low< high) {
-            int p_ind = partition(arr,low,high);
-            quicksort(arr, low, p_ind -1);
-            quicksort(arr, p_ind + 1,high);
-        }
-    }
+class Quicksort {
 
-    public static int partition(int[] arr,int low,int high) {
-        int pivot = arr[low];
+    public static int partition(int[] A, int low, int high) {
+
+        int pivot = A[low];
         int i = low;
-        int j = high +1;
+        int j = high + 1;
 
         do {
             do {
                 i++;
-            } while(i<=high && arr[i]<=pivot);
+            } while (i <= high && A[i] <= pivot);
+
             do {
                 j--;
-            } while(arr[j] > pivot);
-            
-            if(i<j) {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            } while (A[j] > pivot);
+
+            if (i < j) {
+                swap(A, i, j);
             }
-        } while (i<j);
+        } while (i < j);
 
-        int temp = arr[low];
-        arr[low] = arr[j];
-        arr[j] = temp;
+        swap(A, low, j);
+
         return j;
-
     }
-    public static void main(String[] args) {
-        quicksort(arr, 0, arr.length - 1);
-                System.out.println("Sorted array:");
-        for (int num : arr) {
-            System.out.print(num + " ");
+
+    public void QuickSort(int[] A, int low, int high) {
+
+        if (low < high) {
+            int pi = partition(A, low, high);
+            QuickSort(A, low, pi - 1);
+            QuickSort(A, pi + 1, high);
         }
 
+    }
+
+    public static void swap(int[] A, int i, int j) {
+        int temp;
+        temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        
+        Quicksort obj = new Quicksort();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter array size:");
+        int n = sc.nextInt();
+        int[] A = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            A[i] = sc.nextInt();
+        }
+
+        System.out.println("Original array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(A[i] + " ");
+        }
+
+        obj.QuickSort(A, 0, n - 1);
+
+        System.out.println();
+
+        System.out.println("Sorted array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(A[i] + " ");
+        }
     }
 }
 
 //yt link
 //https://youtu.be/8MNB0Mba_Dc?si=tquYRICOr7ecuUvJ
 //https://youtu.be/QXum8HQd_l4?si=hmJp2x6_fmF3VUkF
+
